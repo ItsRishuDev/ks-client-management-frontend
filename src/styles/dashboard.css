@@ -1,0 +1,337 @@
+/* Dashboard Specific Styles */
+
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.dashboard-header-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-bottom: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .dashboard-header-section {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.dashboard-header-title-group h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-slate-900);
+  line-height: 1.25;
+}
+
+.dashboard-header-title-group p {
+  font-size: 0.875rem;
+  color: var(--color-slate-500);
+  margin-top: 0.25rem;
+}
+
+.dashboard-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+/* Metric Cards Grid */
+.dashboard-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+@media (min-width: 1024px) {
+  .dashboard-metrics-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+.metric-card {
+  background-color: #ffffff;
+  border: 1px solid var(--color-slate-200);
+  border-radius: var(--radius-lg, 8px);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: all var(--transition-fast);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+}
+
+.metric-card:hover {
+  border-color: var(--color-slate-300);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.07);
+}
+
+.metric-card--alert {
+  border-left: 4px solid var(--color-danger-text);
+  background-color: #fffdfd;
+}
+
+.metric-card--warning {
+  border-left: 4px solid #f59e0b;
+}
+
+.metric-card--info {
+  border-left: 4px solid var(--color-primary-600);
+}
+
+.metric-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.metric-card-label {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-slate-500);
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+.metric-card-icon-wrap {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-md, 6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.metric-card-value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-slate-900);
+  line-height: 1;
+}
+
+.metric-card-sub {
+  font-size: 0.75rem;
+  color: var(--color-slate-500);
+}
+
+/* Split Main Sections */
+.dashboard-main-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 1200px) {
+  .dashboard-main-grid {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+
+.dashboard-section-card {
+  background-color: #ffffff;
+  border: 1px solid var(--color-slate-200);
+  border-radius: var(--radius-lg, 8px);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-section-header {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--color-slate-100);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.dashboard-section-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-slate-900);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dashboard-section-body {
+  padding: 1.25rem 1.5rem;
+}
+
+/* Work Queue Filters & Tabs */
+.work-queue-filter-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--color-slate-100);
+  background-color: var(--color-slate-50);
+}
+
+.work-queue-tabs {
+  display: flex;
+  gap: 0.375rem;
+  flex-wrap: wrap;
+}
+
+.work-queue-tab-btn {
+  padding: 0.375rem 0.75rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  border-radius: var(--radius-md, 6px);
+  color: var(--color-slate-600);
+  background: transparent;
+  transition: all var(--transition-fast);
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.work-queue-tab-btn:hover {
+  background-color: var(--color-slate-200);
+  color: var(--color-slate-900);
+}
+
+.work-queue-tab-btn--active {
+  background-color: var(--color-primary-600);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.work-queue-tab-btn--active:hover {
+  background-color: var(--color-primary-700);
+  color: #ffffff;
+}
+
+.work-queue-tab-count {
+  font-size: 0.6875rem;
+  padding: 0.125rem 0.375rem;
+  border-radius: var(--radius-full, 9999px);
+  background-color: rgba(0, 0, 0, 0.08);
+}
+
+.work-queue-tab-btn--active .work-queue-tab-count {
+  background-color: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}
+
+/* Work Queue Table styling */
+.work-queue-item-title {
+  font-weight: 600;
+  color: var(--color-slate-900);
+}
+
+.work-queue-item-sub {
+  font-size: 0.75rem;
+  color: var(--color-slate-500);
+  margin-top: 0.125rem;
+}
+
+/* Mobile Work Queue Cards */
+.mobile-queue-card {
+  background-color: #ffffff;
+  border: 1px solid var(--color-slate-200);
+  border-radius: var(--radius-md, 6px);
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Upcoming Deadlines Item */
+.deadline-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.875rem 0;
+  border-bottom: 1px solid var(--color-slate-100);
+  gap: 0.75rem;
+}
+
+.deadline-item:last-child {
+  border-bottom: none;
+}
+
+.deadline-item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  min-width: 0;
+}
+
+.deadline-item-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-slate-900);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.deadline-item-sub {
+  font-size: 0.75rem;
+  color: var(--color-slate-500);
+}
+
+/* Staff Workload Progress */
+.workload-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  padding: 0.875rem 0;
+  border-bottom: 1px solid var(--color-slate-100);
+}
+
+.workload-item:last-child {
+  border-bottom: none;
+}
+
+.workload-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.875rem;
+}
+
+.workload-user-name {
+  font-weight: 600;
+  color: var(--color-slate-900);
+}
+
+.workload-stats {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.75rem;
+  color: var(--color-slate-600);
+}
+
+.workload-bar-bg {
+  width: 100%;
+  height: 6px;
+  background-color: var(--color-slate-100);
+  border-radius: var(--radius-full, 9999px);
+  overflow: hidden;
+  display: flex;
+}
+
+.workload-bar-tasks {
+  background-color: var(--color-primary-600);
+}
+
+.workload-bar-compliance {
+  background-color: #0284c7;
+}
+
+.workload-bar-docs {
+  background-color: #d97706;
+}

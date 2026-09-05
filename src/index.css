@@ -4,6 +4,7 @@
 @import './styles/clients.css';
 @import './styles/compliance.css';
 @import './styles/documents.css';
+@import './styles/tasks.css';
 
 /* Core application layout classes */
 .app-container {

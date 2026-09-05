@@ -8,7 +8,7 @@ import { Pagination } from '../../../frontend/src/components/ui/Pagination';
 import { EmptyState } from '../../../frontend/src/components/ui/EmptyState';
 import { LoadingState } from '../../../frontend/src/components/ui/LoadingState';
 import { ErrorState } from '../../../frontend/src/components/ui/ErrorState';
-import { useToast } from '../../../frontend/src/components/ui/useToast';
+import { useToast } from '../components/ui/useToast';
 import { useAuth } from '../context/useAuth';
 import { userHasPermission } from '../utils/permissions';
 import {

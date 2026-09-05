@@ -373,7 +373,10 @@ export const ClientDetailView: React.FC<ClientDetailViewProps> = ({
             ) : (
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                 {entities.map((entity) => {
-                  const entityGstins = gstRegistrations.filter((g) => g.entity === entity.id || g.client === client.id);
+                  const entityGstins =
+                    entity.gst_registrations && entity.gst_registrations.length > 0
+                      ? entity.gst_registrations
+                      : gstRegistrations.filter((g) => g.entity === entity.id);
                   return (
                     <div key={entity.id} className="entity-card">
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>

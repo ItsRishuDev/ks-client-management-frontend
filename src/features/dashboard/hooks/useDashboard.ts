@@ -3,6 +3,7 @@ import { dashboardApi } from '../../../api/dashboard';
 import type { QueueCategory } from '../../../types/dashboard';
 
 export const DASHBOARD_QUERY_KEYS = {
+  all: ['dashboard'] as const,
   summary: ['dashboard', 'summary'] as const,
   workQueue: (queueType?: QueueCategory, assignedToMe?: boolean) =>
     ['dashboard', 'workQueue', { queueType, assignedToMe }] as const,

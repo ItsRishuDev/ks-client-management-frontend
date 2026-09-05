@@ -22,6 +22,7 @@ export interface User {
   is_active: boolean
   firm?: Firm | null
   firm_id?: string
+  permissions?: string[]
   created_at?: string
   updated_at?: string
 }

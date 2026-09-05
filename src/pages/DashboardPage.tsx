@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { useAuth } from '../context/useAuth';
+import { userHasPermission } from '../utils/permissions';
 import {
   useDashboardSummary,
   useDashboardWorkQueue,
@@ -20,10 +21,9 @@ export const DashboardPage: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<QueueCategory>('all');
   const [selectedDays, setSelectedDays] = useState<number>(7);
 
-  // Queries
+  // Queries - fetch all queue categories so tab counters remain accurate when switching tabs
   const summaryQuery = useDashboardSummary();
   const workQueueQuery = useDashboardWorkQueue({
-    queue_type: selectedCategory,
     assigned_to_me: assignedToMe,
   });
   const upcomingDeadlinesQuery = useDashboardUpcomingDeadlines({
@@ -31,7 +31,7 @@ export const DashboardPage: React.FC = () => {
     assigned_to_me: assignedToMe,
   });
 
-  const canViewStaffWorkload = user?.role === 'ADMIN' || user?.role === 'CA_MANAGER';
+  const canViewStaffWorkload = userHasPermission(user, 'dashboard.workload_view');
   const staffWorkloadQuery = useDashboardStaffWorkload(canViewStaffWorkload);
 
   const handleRefresh = useCallback(() => {

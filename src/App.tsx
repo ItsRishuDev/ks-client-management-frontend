@@ -3,13 +3,19 @@ import { BrowserRouter } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { AuthProvider } from './context/AuthContext'
 import { AppRoutes } from './routes/AppRoutes'
+import { ApiRequestError } from './api/client'
 
 import { ToastProvider } from './components/ui'
 
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      retry: 1,
+      retry: (failureCount, error) => {
+        if (error instanceof ApiRequestError && (error.status === 401 || error.status === 403)) {
+          return false
+        }
+        return failureCount < 1
+      },
       refetchOnWindowFocus: false,
     },
   },

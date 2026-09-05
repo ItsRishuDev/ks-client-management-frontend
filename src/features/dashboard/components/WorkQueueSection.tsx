@@ -276,6 +276,14 @@ export const WorkQueueSection: React.FC<WorkQueueSectionProps> = ({
                 : 'No open tasks or pending compliance obligations found.'
             }
           />
+        ) : !isLoading && ((selectedCategory === 'compliance' && complianceItems.length === 0) ||
+            (selectedCategory === 'tasks' && taskItems.length === 0) ||
+            (selectedCategory === 'documents' && documentItems.length === 0) ||
+            (selectedCategory === 'receivables' && receivableItems.length === 0)) ? (
+          <EmptyState
+            title={`No ${selectedCategory.charAt(0).toUpperCase() + selectedCategory.slice(1)} Items`}
+            description={`There are currently no open ${selectedCategory} items in this queue.`}
+          />
         ) : (
           <Table>
             <TableHeader>

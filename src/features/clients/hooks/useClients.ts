@@ -1,5 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { clientsApi, usersApi } from '../../../api/clients';
+import { DASHBOARD_QUERY_KEYS } from '../../dashboard/hooks/useDashboard';
 import type {
   ClientListParams,
   CreateClientPayload,
@@ -66,7 +67,7 @@ export const useCreateClientMutation = () => {
     mutationFn: (payload: CreateClientPayload) => clientsApi.create(payload),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: CLIENTS_QUERY_KEYS.all });
-      queryClient.invalidateQueries({ queryKey: ['dashboard'] });
+      queryClient.invalidateQueries({ queryKey: DASHBOARD_QUERY_KEYS.all });
     },
   });
 };
@@ -79,7 +80,7 @@ export const useUpdateClientMutation = (clientId: string) => {
       queryClient.invalidateQueries({ queryKey: CLIENTS_QUERY_KEYS.all });
       queryClient.invalidateQueries({ queryKey: CLIENTS_QUERY_KEYS.detail(clientId) });
       queryClient.invalidateQueries({ queryKey: CLIENTS_QUERY_KEYS.view360(clientId) });
-      queryClient.invalidateQueries({ queryKey: ['dashboard'] });
+      queryClient.invalidateQueries({ queryKey: DASHBOARD_QUERY_KEYS.all });
     },
   });
 };
@@ -92,7 +93,7 @@ export const useDeactivateClientMutation = (clientId: string) => {
       queryClient.invalidateQueries({ queryKey: CLIENTS_QUERY_KEYS.all });
       queryClient.invalidateQueries({ queryKey: CLIENTS_QUERY_KEYS.detail(clientId) });
       queryClient.invalidateQueries({ queryKey: CLIENTS_QUERY_KEYS.view360(clientId) });
-      queryClient.invalidateQueries({ queryKey: ['dashboard'] });
+      queryClient.invalidateQueries({ queryKey: DASHBOARD_QUERY_KEYS.all });
     },
   });
 };

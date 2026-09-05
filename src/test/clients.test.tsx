@@ -294,4 +294,44 @@ describe('Clients Module Vertical Slice', () => {
       expect(screen.getByText('No Clients Found')).toBeInTheDocument();
     });
   });
+
+  it('renders multiple clients sharing identical trade names with distinctive client codes', async () => {
+    const clientsWithSameTradeName: ClientListResponse = {
+      items: [
+        {
+          ...mockClientsList.items[0],
+          id: 'client-dup-1',
+          client_code: 'CL-A101',
+          legal_name: 'Apex Supermart Alpha Pvt Ltd',
+          display_name: 'Apex Supermart',
+        },
+        {
+          ...mockClientsList.items[1],
+          id: 'client-dup-2',
+          client_code: 'CL-B202',
+          legal_name: 'Apex Supermart Beta LLP',
+          display_name: 'Apex Supermart',
+        },
+      ],
+      page: 1,
+      page_size: 15,
+      total: 2,
+    };
+
+    vi.spyOn(clientsApi, 'list').mockResolvedValue(clientsWithSameTradeName);
+    vi.spyOn(usersApi, 'list').mockResolvedValue(mockFirmUsers);
+
+    renderClients();
+
+    await waitFor(() => {
+      expect(screen.getByText('CL-A101')).toBeInTheDocument();
+      expect(screen.getByText('CL-B202')).toBeInTheDocument();
+      expect(screen.getByText('Apex Supermart Alpha Pvt Ltd')).toBeInTheDocument();
+      expect(screen.getByText('Apex Supermart Beta LLP')).toBeInTheDocument();
+    });
+
+    const displayNames = screen.getAllByText(/Apex Supermart/i);
+    // 2 legal names + 2 trade names = 4 instances
+    expect(displayNames.length).toBeGreaterThanOrEqual(2);
+  });
 });

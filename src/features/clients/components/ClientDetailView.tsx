@@ -120,14 +120,16 @@ export const ClientDetailView: React.FC<ClientDetailViewProps> = ({
 
   const handleCreateGSTIN = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!selectedEntityId || !gstinValue.trim()) return;
+    const entityId = selectedEntityId || (entities[0]?.id ?? '');
+    if (!entityId || !gstinValue.trim()) return;
+    const selectedEntity = entities.find((ent) => ent.id === entityId);
     const payload: CreateGSTRegistrationPayload = {
-      entity_id: selectedEntityId,
+      entity_id: entityId,
       gstin: gstinValue.trim().toUpperCase(),
       state_code: gstinStateCode,
       state_name: gstinStateName,
-      legal_name: client.legal_name,
-      trade_name: client.display_name || undefined,
+      legal_name: selectedEntity?.legal_name || client.legal_name,
+      trade_name: selectedEntity?.trade_name || client.display_name || undefined,
     };
     await createGSTINMutation.mutateAsync(payload);
     setGstinValue('');

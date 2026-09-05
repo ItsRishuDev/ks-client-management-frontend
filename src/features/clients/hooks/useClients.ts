@@ -48,6 +48,15 @@ export const useClient360 = (clientId?: string) => {
   });
 };
 
+export const useClientGstRegistrations = (clientId?: string) => {
+  return useQuery({
+    queryKey: CLIENTS_QUERY_KEYS.gstRegistrations(clientId || ''),
+    queryFn: () => clientsApi.listGSTRegistrations(clientId!),
+    enabled: !!clientId,
+    staleTime: 60 * 1000,
+  });
+};
+
 export const useFirmUsers = () => {
   return useQuery<FirmUserOption[]>({
     queryKey: CLIENTS_QUERY_KEYS.firmUsers,

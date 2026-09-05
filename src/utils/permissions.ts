@@ -17,6 +17,9 @@ export const ROLE_PERMISSIONS: Record<UserRole, string[]> = {
     'tasks.complete',
     'invoices.create',
     'payments.record',
+    'communications.view',
+    'communications.send',
+    'templates.manage',
     'settings.manage',
     'audit_logs.view',
     'users.manage',
@@ -37,6 +40,9 @@ export const ROLE_PERMISSIONS: Record<UserRole, string[]> = {
     'tasks.complete',
     'invoices.create',
     'payments.record',
+    'communications.view',
+    'communications.send',
+    'templates.manage',
     'audit_logs.view',
     'dashboard.workload_view',
   ],
@@ -49,6 +55,8 @@ export const ROLE_PERMISSIONS: Record<UserRole, string[]> = {
     'tasks.view',
     'tasks.create',
     'tasks.complete',
+    'communications.view',
+    'communications.send',
   ],
 }
 
